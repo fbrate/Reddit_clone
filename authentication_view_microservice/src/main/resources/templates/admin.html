@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <!-- Font Awesome cdn -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-kW2H6mf/72/MKlmwB//Zcwg0ckiegojPx/fio14/rpoYw2LMhULTn5YhS1QyrQfx" crossorigin="anonymous">
+
+
+    <title>Tickets</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>-->
+
+
+
+<!--<div th:insert="/fragments/general.html :: header"></div>-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Reddyt</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav mr-auto">
+
+        <a href="/home" type="button" class="btn btn-primary">Browse</a>
+        <a href="/followSubscribePosts" type="button" class="btn btn-danger">Subscribed</a>
+        <a href="/allPosts" type="button" class="btn btn-warning">All Posts</a>
+        <div th:if="${admin}">
+            <a href="/admin" type="button" class="btn btn-success">Admin</a>
+        </div>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+        <i class="fa fa-user"></i> <label th:text="${user.firstName}+' '+${user.lastName}"> </label>
+        <a class="btn btn-outline-success my-2 my-sm-0 mx-5"
+           type="submit"
+           th:href="@{/userPage}">My Page</a>
+        <a class="btn btn-outline-info my-2 my-sm-0 mx-5"
+           type="submit"
+           th:href="@{/logout}">Logout</a>
+    </form>
+
+</nav>
+
+<div class="container">
+    <div class="jumbotron">
+        <h3 class="display-5">Admin only</h3>
+        <p class="lead">all users below</p>
+        <hr class="my-4">
+        <div th:if="${!admin}">
+            <h3>Not Admin.</h3>
+        </div>
+        <div th:if="${admin}">
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="thisUser : ${users}" class="table-active">
+                    <th scope="row" th:text="${thisUser.id}"></th>
+                    <td th:text="${thisUser.email}"></td>
+                    <td>
+                        <form th:action="@{/updateUser}" method="post">
+                            <div class="form-group">
+
+                                    <input type="text" name="firstName" class="form-control" th:value="${thisUser.firstName}">
+
+                                    <input type="text" name="lastName" class="form-control" th:value="${thisUser.lastName}">
+
+                                    <input type="email" name="email" class="form-control" th:value="${thisUser.email}">
+
+                                <input type = "hidden" class = "form-control" th:value="${thisUser.id}" id="userIdPas" name="userId">
+
+                                <input type="password" name="password" id="password" class="form-control" placeholder="New Password">
+
+                            </div>
+                            <td><button class="btn btn-success">Update User</button></td>
+
+
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/deleteUser}" method="post">
+                            <input type = "hidden" class = "form-control" th:value="${thisUser.id}" id="userId" name="userId">
+
+
+                        <button class="btn btn-outline-secondary">Delete User</button>
+                        </form>
+                    </td>
+
+                    </td>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+</html>

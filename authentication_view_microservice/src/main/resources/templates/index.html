@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Font Awesome cdn -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-kW2H6mf/72/MKlmwB//Zcwg0ckiegojPx/fio14/rpoYw2LMhULTn5YhS1QyrQfx" crossorigin="anonymous">
+
+    <title>Home</title>
+</head>
+<body>
+
+<!--<header th:insert="fragments/general.html :: header"></header>-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Reddyt</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav mr-auto">
+
+        <a href="/home" type="button" class="btn btn-primary">Browse</a>
+        <a href="/followSubscribePosts" type="button" class="btn btn-danger">Subscribed</a>
+        <a href="/allPosts" type="button" class="btn btn-warning">All Posts</a>
+        <div th:if="${admin}">
+            <a href="/admin" type="button" class="btn btn-success">Admin</a>
+        </div>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+        <i class="fa fa-user"></i> <label th:text="${user.firstName}+' '+${user.lastName}"> </label>
+        <a class="btn btn-outline-success my-2 my-sm-0 mx-5"
+           type="submit"
+           th:href="@{/userPage}">My Page</a>
+        <a class="btn btn-outline-info my-2 my-sm-0 mx-5"
+           type="submit"
+           th:href="@{/logout}">Logout</a>
+    </form>
+
+</nav>
+
+<div class="container">
+    <div class="jumbotron">
+        <h3 class="display-5">Channels</h3>
+        <p class="lead">Select a channel to proceed</p>
+
+<form th:object="${searchedTitle}" th:action="@{/home}" method="get">
+    <input type="text" name="searchedTitle" id="searchedTitle" th:value="${searchedTitle}"/>
+    <input type="submit" value="Search"/>
+    <hr class="my-4">
+    <table class="table table-striped">
+        <tr>
+
+            <th>Channel</th>
+
+        </tr>
+        <tr th:each="channel: ${searchedChannels}">
+            <td th:text="${channel.title}"></td>
+            <td>
+                <form th:action="@{/getChannelPosts}" method="get">
+                    <input type="hidden" th:value="${channel.title}" id="title" name="title">
+                    <button class="btn btn-outline-secondary">Go to Channel</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/subscribeToChannel}" method="post">
+                    <input type="hidden" th:value="${channel.title}" id="title2" name="title2">
+                    <button class="btn btn-outline-warning">Subscribe to Channel</button>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+
+
+
+
+
+    </div>
+
+</div>
+
+<!--<div th:insert="fragments/general.html :: footer"></div>-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Font Awesome cdn -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-kW2H6mf/72/MKlmwB//Zcwg0ckiegojPx/fio14/rpoYw2LMhULTn5YhS1QyrQfx" crossorigin="anonymous">
+
+    <title>Register new User</title>
+</head>
+<body>
+<!--<div th:insert="fragments/general.html :: header_unlogged"></div>-->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Reddyt</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav mr-auto">
+
+        <a href="/signup" type="button" class="btn btn-primary">Register New User</a>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+        <a class="btn btn-outline-info my-2 my-sm-0 mx-5"
+           type="submit"
+           th:href="@{/}">Login</a>
+    </form>
+
+</nav>
+<div class="container">
+    <div class="col-sm-6 my-3">
+        <h4 class="text-primary">Registration Form</h4>
+        <form th:action="@{/processRegistration}" modelAttribute="user" method="post">
+            <div class="form-group">
+                <input type="text" name="firstName" class="form-control" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <input type="text" name="lastName" class="form-control" placeholder="Last Name">
+            </div>
+
+            <div class="form-group">
+                <input type="email" name="email" class="form-control" placeholder="Email">
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+
+            <button class="btn btn-success">Save</button>
+        </form>
+    </div>
+</div>
+<!--<div th:insert="fragments/general.html :: footer"></div>-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+</html>
