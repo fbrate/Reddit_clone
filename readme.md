@@ -1,32 +1,64 @@
-l project in Software Architecture and Framworks Spring 2019</h1>
+<h1> Final project in Software Architecture and Framworks Spring 2019 </h1>
 Subject link: https://student.oslomet.no/en/studier/-/studieinfo/emne/DAVE3615/2018/H%C3%98ST 
 <br>
 
-<h2> Assignment details </h2>
+<h2> Assignment details - Reddit clone</h2>
+. As reddit itself it has channels, posts and user logins.
+Each channel has multiple posts inside them. 
+After authentication users can like, and create posts. They can also follow channels and users, and see only those 
+posts in a different feed.
 
-I chose to make a Reddit clone(One of the choices), and here are
-the feautures of the project.
+The project consists of 3 microservices, where two of them are REST API`s with their own DB. One of the databases contain user details including passwords and emails. And the other contains the same user id, and their posts, subscriptions etc.
 
-<h3> Technologies used: </h3>
-h2 database
-Spring boot
-Spring Security
-Lombok
-Thymeleaf
-Bootstrap css templates
-Docker
-Deployed on DigitalOcean
+There is another microservice which is the front end and Spring Security which authorizes and asks the API`s for the necessary information to authenticate logins, and render out posts, channels, friend lists etc in their desired placements.
 
-<h2>Brief explanation of each of the microservices</h2>
-<h4>UserService</h4>
-Database for User(Authenticaton)
+
+
+This was a final university project at OsloMet, Spring 2019.
+
+
+<h2> Technologies used: </h2>
+
+* h2 database.
+
+* Spring boot.
+
+* Spring Security
+
+* Lombok
+
+* Thymeleaf
+
+* Bootstrap css templates
+
+* Docker
+
+* Deployed on DigitalOcean
+
+
+<h1>Database Model</h1>
+
+![Database Model](/readmesrc/DatabaseModl.png)
+
+
+
+
+
+<h1>High level architecture:</h1>
+![High level architecture](/readmesrc/highdiag.png)
+
+<h1>Explanation of each of the microservices</h1>
+
+
+<h2>UserService</h2>
+Database for User(Authenticaton) for the front end service. And updates the User on delete, creation and updates of the User model.
 
 
 **Description**
 
 * Ths service is responsible for taking the user information and storing it in the database.
-Then it will map the data to JSON and share it to the AuthenticationAndFrontEndService for login and some id verification.
-* When this service is called  it passes the updated/created users id to the
+Then it will map the data to JSON and share it to the AuthenticationAndFrontEndService for login and id verification.
+* When this microservice data is updated it passes the updated/created users id to the
 ForumService which creates a User copy object which has the same id. This is to ensure that each service corresponing ids in both services to keep posts linked to the corrct User.
 
 * Has an own database to make it more independent.
@@ -119,9 +151,9 @@ ForumService which creates a User copy object which has the same id. This is to 
 
 
 
-<h4>ForumService</h4>
+<h2>ForumService</h2>
 
-Connects to database for posts, channels and forumuser. 
+Connects to database for posts, channels and forumuser. And acts as a REST API for the front end service.
 
 
 **Description**
@@ -362,7 +394,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-<h4>AuthenticationAndFrontEndService</h4>
+<h2>AuthenticationAndFrontEndService</h2>
 
 
 **Description**
