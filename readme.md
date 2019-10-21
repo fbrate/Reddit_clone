@@ -20,6 +20,8 @@ Deployed on DigitalOcean
 <h2>Brief explanation of each of the microservices</h2>
 <h4>UserService</h4>
 Database for User(Authenticaton)
+
+
 **Description**
 
 * Ths service is responsible for taking the user information and storing it in the database.
@@ -120,6 +122,8 @@ ForumService which creates a User copy object which has the same id. This is to 
 <h4>ForumService</h4>
 
 Connects to database for posts, channels and forumuser. 
+
+
 **Description**
 
 
@@ -359,6 +363,8 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 <h4>AuthenticationAndFrontEndService</h4>
+
+
 **Description**
 
 * Authenticates the session with the UserService, and gets posts and channels from
