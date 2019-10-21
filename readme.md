@@ -1,6 +1,26 @@
 <h1> Final project in Software Architecture and Framworks Spring 2019 </h1>
 Subject link: https://student.oslomet.no/en/studier/-/studieinfo/emne/DAVE3615/2018/H%C3%98ST 
 <br>
+<h2>Table of Contents</h2>
+
+* Assignment details - Reddit clone
+* Technologies used.
+* Database Model.
+* High level architecture.
+* Explanation of each of the microservices.
+  * UserService
+    * Description
+    * Dependencies
+    * API endpoints
+  * ForumService
+    * Description
+    * Dependencies
+    * API endpoints
+  * AuthAndFrontEndService / channels-posts service
+    * Description
+    * Dependencies
+    * Functionality
+  
 
 <h2> Assignment details - Reddit clone</h2>
 . As reddit itself it has channels, posts and user logins.
@@ -13,9 +33,7 @@ The project consists of 3 microservices, where two of them are REST API`s with t
 There is another microservice which is the front end and Spring Security which authorizes and asks the API`s for the necessary information to authenticate logins, and render out posts, channels, friend lists etc in their desired placements.
 
 
-
-This was a final university project at OsloMet, Spring 2019.
-
+No other collaborators.
 
 <h2> Technologies used: </h2>
 
@@ -45,7 +63,10 @@ This was a final university project at OsloMet, Spring 2019.
 
 
 <h1>High level architecture:</h1>
-![High level architecture](/readmesrc/highdiag.png)
+
+
+![highdiag](/readmesrc/highdiag.png)
+
 
 <h1>Explanation of each of the microservices</h1>
 
@@ -68,14 +89,14 @@ ForumService which creates a User copy object which has the same id. This is to 
 **Dependencies**
 
 
-* Self sustained. is called upon creation, and validation of users.
+* Self sustained. is called upon creation, and authentication of users.
 
 
 **API Endpoints**
 
 
 
-* Endpoint /users
+* Endpoint: /users
 
     * HTTP Method: Get
   * Parameters: 
@@ -87,7 +108,7 @@ ForumService which creates a User copy object which has the same id. This is to 
 
 
 
-* Endpoint /users/{id}
+* Endpoint: /users/{id}
 
   * HTTP Method: Get
   * Parameters: long id
@@ -99,7 +120,7 @@ ForumService which creates a User copy object which has the same id. This is to 
 
 
 
-* Endpoint /users/findEmail/{email}
+* Endpoint: /users/findEmail/{email}
 
   * HTTP Method: Get
   * Parameters: String email
@@ -111,7 +132,7 @@ ForumService which creates a User copy object which has the same id. This is to 
 
 
 
-* Endpoint /users/{id}
+* Endpoint: /users/{id}
 
   * HTTP Method: Delete
   * Parameters: long id 
@@ -123,7 +144,7 @@ ForumService which creates a User copy object which has the same id. This is to 
 
 
 
-* Endpoint /users
+* Endpoint: /users
 
   * HTTP Method: Post	
   * Parameters: User newUser 
@@ -135,7 +156,7 @@ ForumService which creates a User copy object which has the same id. This is to 
 
 
 
-* Endpoint /users/{id}
+* Endpoint: /users/{id}
 
   * HTTP Method: Put
   * Parameters: long id, User newUser
@@ -176,7 +197,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /updateUserDataBase
+* Endpoint: /updateUserDataBase
 
   * HTTP Method: Get
   * Parameters: 
@@ -188,7 +209,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /users
+* Endpoint: /users
 
   * HTTP Method: Get
   * Parameters: 
@@ -200,7 +221,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /users/{id}
+* Endpoint: /users/{id}
 
   * HTTP Method: Get
   * Parameters: long id
@@ -212,7 +233,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /users/{id}
+* Endpoint: /users/{id}
 
   * HTTP Method: Put
   * Parameters: long id, User newUser
@@ -224,7 +245,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /users/{id}
+* Endpoint: /users/{id}
 
   * HTTP Method: Delete
   * Parameters: long id 
@@ -234,7 +255,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /users
+* Endpoint: /users
 
   * HTTP Method: Post
   * Parameters: User user
@@ -246,7 +267,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /users/followUser/{id}
+* Endpoint: /users/followUser/{id}
 
   * HTTP Method: Post
   * Parameters: long id, User user
@@ -258,7 +279,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /users/subto/{channel}
+* Endpoint: /users/subto/{channel}
 
   * HTTP Method: Post
   * Parameters: String channel, User user
@@ -270,7 +291,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /posts
+* Endpoint: /posts
 
   * HTTP Method: Get
   * Parameters: 
@@ -282,7 +303,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /posts
+* Endpoint: /posts
 
   * HTTP Method: Post
   * Parameters: Post newPost
@@ -294,7 +315,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /posts/{id}
+* Endpoint: /posts/{id}
 
   * HTTP Method: Get
   * Parameters: long id 
@@ -306,7 +327,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /posts/likePost/{id}
+* Endpoint: /posts/likePost/{id}
 
   * HTTP Method: Post
   * Parameters: Post post, long id
@@ -317,7 +338,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /posts/fromchan/{id}
+* Endpoint: /posts/fromchan/{id}
 
   * HTTP Method: Get
   * Parameters: String id
@@ -329,7 +350,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /posts/postsByUser/{id}
+* Endpoint: /posts/postsByUser/{id}
 
   * HTTP Method: Get
   * Parameters: long id
@@ -341,7 +362,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /channels
+* Endpoint: /channels
 
   * HTTP Method: Get
   * Parameters: 
@@ -354,7 +375,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /channels/{id}
+* Endpoint: /channels/{id}
 
   * HTTP Method: Get
   * Parameters: long id 
@@ -366,7 +387,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /channels
+* Endpoint: /channels
 
   * HTTP Method: Post
   * Parameters: Channel newChannel
@@ -378,7 +399,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-* Endpoint /channels/chaninuser/{id}
+* Endpoint: /channels/chaninuser/{id}
 
   * HTTP Method: Get
   * Parameters: long id
@@ -393,8 +414,7 @@ object is edited. It communicates over rest api to send channels, forums, and us
 
 
 
-
-<h2>AuthenticationAndFrontEndService</h2>
+<h2>AuthenticationAndFrontEndService / channels-posts service</h2>
 
 
 **Description**
