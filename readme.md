@@ -365,51 +365,37 @@ object is edited. It communicates over rest api to send channels, forums, and us
 ForumService. It seperates User classes from both other services with ForumUser(for the
 	forumService’s user) and User for the authenticaiton one. The User is only used when
 	authenticaiton is required.
-	* 
-	
-	* 
-	
+
+**Dependencies**
 	
 	
-	**Dependencies**
+* Need to fetch authentication data from UserService
+* Needs to fetch post,channel, forumUser data from ForumService
 	
 	
-	* Need to fetch authentication data from UserService
-	* Needs to fetch post,channel, forumUser data from ForumService
+**Functionality:**
 	
-	
-	**Functionality:**
-	
-	
-	*  Create Account.
-	*  Login, Logout.
-	*  Session Management.
-	*  Microservices communication using REST APIs.
-	*  3 microservices in the project.
-	* Main Page showing all posts(login not necesarry).
-	*  User can see two pages: 
-	
-	*  All posts: Posts from all users appear here.
-	*  Channel posts: Posts from subscribed channels appear here.
-	
-	
-	*  A channel is like a forum topic(example: bitcoin, arts). Each posts should belong to a channel.
-	*  User can search for a post or a channel.
-	* User can Create a post with either free text or image.
-	* The post should be posted in a channel.
-	* User can subscribe to a channel and will only see the popsts from that channel.
-	* The user can like a post by other users.
-	* User can follow other users and thus see their posts on their page.
-	* User can see their friend list(The users they follow)
-	* User porfile page where user can change password, delete account etc.
-	*  Admin functionality:
-	
-	* Admin can look at all users in the system.
-	* Admin can delete a user or update their password.
-	
-	
-	
-	* Initial data dump: 10 posts, 5 channels and 4 different users. Login credentials for testing in src/main/java/no/oslomet/authenticationfrontendmicroservice/controller/MainController.java
+*  Create Account.
+*  Login, Logout.
+*  Session Management.
+*  Microservices communication using REST APIs.
+* Main Page showing all posts(login not necesarry).
+*  User can see two pages: 
+  *  All posts: Posts from all users appear here.
+  *  Channel posts: Posts from subscribed channels appear here.
+*  A channel is like a forum topic(example: bitcoin, arts). Each posts should belong to a channel.
+*  User can search for a post or a channel.
+* User can Create a post with either free text or image.
+* The posts are posted in channels.
+* User can subscribe to a channel and can then see only subscribed posts in a section.
+* The user can like a post by other users.
+* User can follow other users and thus see their posts on their page.
+* User can see their friend list(The users they follow)
+* User profile page where user can change password, delete account etc.
+*  Admin functionality:
+  * Admin can look at all users in the system.
+  * Admin can delete a user or update their password.	
+* Initial data dump: 10 posts, 5 channels and 4 different users. Login credentials for testing in src/main/java/no/oslomet/authenticationfrontendmicroservice/controller/MainController.java
 	
 	
 
